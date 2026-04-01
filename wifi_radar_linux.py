@@ -18,7 +18,7 @@ class WiFiRadarLinux:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("WiFi Radar - Motion Detection")
-        self.root.geometry("800x900")
+        self.root.geometry("900x1000")
         self.root.configure(bg='#1a1a2e')
         
         # State
@@ -51,7 +51,7 @@ class WiFiRadarLinux:
         subtitle.pack()
         
         # Radar Canvas
-        self.canvas = tk.Canvas(self.root, width=600, height=600, bg='#0a0a1a',
+        self.canvas = tk.Canvas(self.root, width=500, height=500, bg='#0a0a1a',
                                highlightthickness=0)
         self.canvas.pack(pady=10)
         
@@ -296,8 +296,8 @@ class WiFiRadarLinux:
     def draw_radar(self):
         self.canvas.delete('all')
         
-        cx, cy = 300, 300
-        radius = 250
+        cx, cy = 250, 250
+        radius = 200
         
         # Background circles
         for i in range(1, 5):
