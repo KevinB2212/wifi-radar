@@ -5,6 +5,7 @@
 ![WiFi Radar Demo](https://img.shields.io/badge/status-demo-yellow)
 ![Python](https://img.shields.io/badge/python-3.7+-blue)
 ![macOS](https://img.shields.io/badge/platform-macOS-lightgrey)
+![Linux](https://img.shields.io/badge/platform-Linux-orange)
 
 ---
 
@@ -31,12 +32,20 @@ WiFi Radar detects motion by monitoring signal strength fluctuations across mult
 
 ### Requirements
 
+**macOS:**
 - **macOS** (uses `airport` command-line utility)
 - **Python 3.7+**
 - **Tkinter** (built into Python)
 
+**Linux:**
+- **Linux** (uses `nmcli` or `iwlist`)
+- **Python 3.7+**
+- **Tkinter** (`python3-tk` package)
+- **NetworkManager** or wireless-tools
+
 ### Quick Start
 
+**macOS:**
 ```bash
 # Clone this repo
 git clone https://github.com/KevinB2212/wifi-radar.git
@@ -47,6 +56,19 @@ python3 wifi_radar_ui.py
 
 # Or use the launcher (auto-installs dependencies)
 bash launch_radar.sh
+```
+
+**Linux:**
+```bash
+# Quick install (one-liner)
+curl -fsSL https://raw.githubusercontent.com/KevinB2212/wifi-radar/main/install_linux.sh | bash
+
+# Or manual:
+curl -O https://raw.githubusercontent.com/KevinB2212/wifi-radar/main/wifi_radar_linux.py
+chmod +x wifi_radar_linux.py
+python3 wifi_radar_linux.py
+
+# See LINUX_INSTALL.md for detailed instructions
 ```
 
 ### Features
@@ -115,11 +137,13 @@ bash launch_radar.sh
 
 ```
 wifi-radar/
-├── wifi_radar.py           # Terminal version (text-based)
-├── wifi_radar_ui.py        # GUI version (radar display) ⭐
-├── launch_radar.sh         # Quick launcher script
-├── setup.sh                # Dependency installer
+├── wifi_radar.py           # macOS terminal version
+├── wifi_radar_ui.py        # macOS GUI version ⭐
+├── wifi_radar_linux.py     # Linux GUI version ⭐
+├── launch_radar.sh         # macOS launcher
+├── install_linux.sh        # Linux installer
 ├── wifi_radar_README.md    # Full documentation
+├── LINUX_INSTALL.md        # Linux setup guide
 └── DEMO.md                 # UI walkthrough
 ```
 
@@ -166,7 +190,7 @@ Full graphical interface with:
 
 ### Limitations
 
-- **macOS Only** - Relies on `airport` utility
+- **macOS/Linux Only** - Windows support not yet implemented
 - **Indoor Use** - Works best with multiple WiFi networks
 - **Not Perfect** - Can miss slow/small movements
 - **Baseline Drift** - Needs recalibration over time
@@ -175,12 +199,13 @@ Full graphical interface with:
 
 ## 🔮 Future Ideas
 
-- [ ] Linux support (via `iwlist` or `nmcli`)
+- [x] Linux support (via `nmcli`/`iwlist`) ✅
 - [ ] Windows support (via `netsh`)
 - [ ] Heatmap visualization
 - [ ] Multi-room tracking
 - [ ] Alert notifications (email/SMS)
 - [ ] Historical data export
+- [ ] Web-based live streaming
 
 ---
 
