@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WiFi Radar - Visual motion detection using WiFi signal fluctuations">
+    <title>WiFi Radar - Motion Detection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📡 WiFi Radar</h1>
+            <p class="subtitle">Motion detection via WiFi signal analysis</p>
+        </header>
+
+        <div class="demo-notice">
+            <strong>⚠️ Web Demo:</strong> This is a simulated version. The real app scans actual WiFi networks and requires Python. 
+            <a href="#install">See installation instructions</a>
+        </div>
+
+        <div class="radar-container">
+            <canvas id="radarCanvas" width="600" height="600"></canvas>
+            
+            <div class="status-overlay" id="statusOverlay">
+                <div class="status-text" id="statusText">READY</div>
+            </div>
+
+            <div class="controls">
+                <button id="startBtn" class="btn btn-start">START MONITORING</button>
+                <button id="stopBtn" class="btn btn-stop" style="display: none;">STOP MONITORING</button>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">Scans:</span>
+                    <span class="stat-value" id="scanCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Access Points:</span>
+                    <span class="stat-value" id="apCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Alerts:</span>
+                    <span class="stat-value" id="alertCount">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-log">
+            <h3>Activity Log</h3>
+            <div id="logContainer" class="log-container"></div>
+        </div>
+
+        <section id="install" class="install-section">
+            <h2>🚀 Install the Real Version</h2>
+            <p>The actual WiFi Radar runs on your Mac and scans real WiFi networks:</p>
+            
+            <div class="code-block">
+                <pre><code># Clone or download the Python files
+python3 wifi_radar_ui.py
+
+# Or use the launcher
+bash launch_radar.sh</code></pre>
+            </div>
+
+            <h3>How It Works</h3>
+            <ul>
+                <li>Scans WiFi networks every 2 seconds using macOS <code>airport</code> utility</li>
+                <li>Builds a baseline of signal strengths over 40 seconds</li>
+                <li>Detects motion when multiple APs show unusual signal fluctuations</li>
+                <li>Visual radar display with real-time updates</li>
+            </ul>
+
+            <h3>Requirements</h3>
+            <ul>
+                <li>macOS (uses <code>airport</code> command)</li>
+                <li>Python 3.7+</li>
+                <li>Tkinter (built into Python)</li>
+            </ul>
+
+            <p class="github-link">
+                <a href="https://github.com/KevinB2212/wifi-radar" target="_blank">
+                    📦 View on GitHub
+                </a>
+            </p>
+        </section>
+
+        <footer>
+            <p>Built by <a href="https://github.com/KevinB2212" target="_blank">Kevin Brennan</a></p>
+        </footer>
+    </div>
+
+    <script src="radar.js"></script>
+</body>
+</html>

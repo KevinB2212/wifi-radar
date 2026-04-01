@@ -1,0 +1,321 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #00ff88;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #888;
+}
+
+.demo-notice {
+    background: rgba(255, 193, 7, 0.1);
+    border: 2px solid #ffc107;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #ffc107;
+}
+
+.demo-notice a {
+    color: #00ff88;
+    text-decoration: none;
+}
+
+.demo-notice a:hover {
+    text-decoration: underline;
+}
+
+.radar-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+#radarCanvas {
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 136, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.2);
+}
+
+.status-overlay {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.status-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 30px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #00ff88;
+    transition: all 0.3s;
+}
+
+.status-text.warning {
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    animation: pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-start {
+    background: #00ff88;
+    color: #1a1a2e;
+}
+
+.btn-start:hover {
+    background: #00cc6f;
+    transform: scale(1.05);
+}
+
+.btn-stop {
+    background: #ff4444;
+    color: white;
+}
+
+.btn-stop:hover {
+    background: #cc0000;
+    transform: scale(1.05);
+}
+
+.stats {
+    display: flex;
+    gap: 30px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px 30px;
+    border-radius: 10px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00ff88;
+}
+
+.activity-log {
+    margin-top: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.activity-log h3 {
+    color: #00ff88;
+    margin-bottom: 15px;
+}
+
+.log-container {
+    max-height: 300px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.log-entry {
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.log-entry.info {
+    background: rgba(0, 255, 136, 0.1);
+    border-left: 3px solid #00ff88;
+}
+
+.log-entry.warning {
+    background: rgba(255, 68, 68, 0.1);
+    border-left: 3px solid #ff4444;
+    font-weight: bold;
+}
+
+.install-section {
+    margin-top: 50px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+}
+
+.install-section h2 {
+    color: #00ff88;
+    margin-bottom: 20px;
+}
+
+.install-section h3 {
+    color: #00ff88;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.install-section ul {
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.install-section li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.code-block {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.code-block pre {
+    margin: 0;
+}
+
+.code-block code {
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+}
+
+.install-section code {
+    background: rgba(0, 255, 136, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
+}
+
+.github-link {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.github-link a {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #00ff88;
+    color: #1a1a2e;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.github-link a:hover {
+    background: #00cc6f;
+    transform: scale(1.05);
+}
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+    color: #888;
+    padding: 20px;
+}
+
+footer a {
+    color: #00ff88;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    #radarCanvas {
+        width: 100%;
+        height: auto;
+    }
+    
+    .stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .controls {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
