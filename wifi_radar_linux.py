@@ -307,8 +307,8 @@ class WiFiRadarLinux:
             self.canvas.create_oval(cx-r, cy-r, cx+r, cy+r, outline=color, width=1)
             
         # Crosshair
-        self.canvas.create_line(cx-radius, cy, cx+radius, cy, fill='#00ff8850', width=1)
-        self.canvas.create_line(cx, cy-radius, cx, cy+radius, fill='#00ff8850', width=1)
+        self.canvas.create_line(cx-radius, cy, cx+radius, cy, fill='#006644', width=1)
+        self.canvas.create_line(cx, cy-radius, cx, cy+radius, fill='#006644', width=1)
         
         # Sweep line
         if self.monitoring:
@@ -320,7 +320,7 @@ class WiFiRadarLinux:
         labels = ['-30dBm', '-45dBm', '-60dBm', '-75dBm']
         for i, label in enumerate(labels):
             r = (radius / 4) * (i + 1)
-            self.canvas.create_text(cx, cy - r - 10, text=label, fill='#00ff8880', font=('Courier', 10))
+            self.canvas.create_text(cx, cy - r - 10, text=label, fill='#00aa66', font=('Courier', 10))
             
         # Access points
         for i, bssid in enumerate(self.scan_history.keys()):
