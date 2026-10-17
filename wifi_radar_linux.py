@@ -144,13 +144,18 @@ class WiFiRadarLinux:
             if result.returncode == 0:
                 for line in result.stdout.strip().split('\n'):
                     if line:
-                        parts = line.split(':')
+                        # nmcli -t escapes colons inside fields (BSSID), so split
+                        # on unescaped colons only, then unescape.
+                        parts = [f.replace('\\:', ':')
+                                 for f in re.split(r'(?<!\\):', line)]
                         if len(parts) >= 3:
-                            ssid = parts[0] or '(hidden)'
+                            try:
+                                signal = int(parts[2])
+                            except ValueError:
+                                continue
                             bssid = parts[1]
-                            signal = int(parts[2])
                             aps[bssid] = {
-                                'ssid': ssid,
+                                'ssid': parts[0] or '(hidden)',
                                 'bssid': bssid,
                                 'signal': signal
                             }
@@ -262,7 +267,10 @@ class WiFiRadarLinux:
                     if bssid in self.baseline:
                         deviation = abs(ap['signal'] - self.baseline[bssid])
                         
-                        if deviation > 5:  # 5 dBm threshold
+                        # ponytail: nmcli reports signal as 0-100%, not dBm,
+                        # so this threshold is in percent points. Tune it here
+                        # if the radar is too twitchy or too deaf.
+                        if deviation > 5:
                             motion_detected = True
                             affected_aps.append(ap['ssid'])
                             self.alert_aps.add(bssid)
